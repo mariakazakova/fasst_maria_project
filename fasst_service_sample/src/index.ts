@@ -1,7 +1,7 @@
 import './preStart'; // Must be the first import
 import app from '@server';
 import logger from '@shared/Logger';
-const express = require ('express');
+const express = require('express');
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost/tortues");
 
