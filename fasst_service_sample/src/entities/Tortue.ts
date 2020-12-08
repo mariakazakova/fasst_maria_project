@@ -1,7 +1,6 @@
 import { Model, Document, model, Schema } from 'mongoose';
 
 export interface ITortue {
-    id: number;
     name: string;
     age: number;
     taille: number;
@@ -10,7 +9,6 @@ export interface ITortue {
 }
 
 const schema = new Schema({
-    id: Number,
     name: String,
     age: Number,
     taille: Number,

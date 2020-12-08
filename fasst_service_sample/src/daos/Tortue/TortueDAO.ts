@@ -3,16 +3,16 @@ import { ITortue, tortue } from '@entities/Tortue';
 
 
 export interface ITortueDao {
-    getOne: (id: number) => Promise<ITortue | null>;
+    getOne: (id: string) => Promise<ITortue | null>;
     getAll: () => Promise<ITortue[]>;
     add: (Tortue: ITortue) => Promise<ITortue>;
-    update: (Tortue: ITortue) => Promise<ITortue | null>;
-    delete: (id: number) => Promise<void>;
+    update: (Tortue: ITortue, id: string) => Promise<ITortue | null>;
+    delete: (id: string) => Promise<void>;
 }
 
 class TortueDao implements ITortueDao {
 
-    public async getOne(id: number): Promise<ITortue | null> {
+    public async getOne(id: string): Promise<ITortue | null> {
         return tortue.findOne({ _id: id });
     }
 
@@ -24,11 +24,11 @@ class TortueDao implements ITortueDao {
         return tortue.create(newTortue);
     }
 
-    public async update(newTortue: ITortue): Promise<ITortue | null> {
-        return tortue.findByIdAndUpdate({ _id: newTortue.id }, newTortue);
+    public async update(newTortue: ITortue, id: string): Promise<ITortue | null> {
+        return tortue.findByIdAndUpdate({ _id: id }, newTortue);
     }
 
-    public async delete(id: number): Promise<void> {
+    public async delete(id: string): Promise<void> {
         return tortue.deleteOne({ id });
     }
 
