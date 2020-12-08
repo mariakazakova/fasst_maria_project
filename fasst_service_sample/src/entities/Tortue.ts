@@ -19,4 +19,5 @@ const schema = new Schema({
 });
 
 
-export const tortue: Model<ITortue & Document> = model('tortues', schema);
+// @ts-ignore
+export const tortue: Model<ITortue & Document> = model<ITortue & Document>('tortues', schema);
