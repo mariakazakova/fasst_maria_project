@@ -29,7 +29,7 @@ class TortueDao implements ITortueDao {
     }
 
     public async delete(id: string): Promise<void> {
-        return tortue.deleteOne({ id });
+        return tortue.deleteOne({ _id: id });
     }
 
 }
