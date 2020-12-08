@@ -7,7 +7,7 @@ import 'mocha';
 chai.use(chaiHttp);
 
 describe('hooks', async () => {
-
+    
     beforeEach(async () => {
       await tortue.deleteMany({});
       await tortue.create({
@@ -17,7 +17,7 @@ describe('hooks', async () => {
             "terrestre": false,
             "species": "Testudo (Agrionemys) horsfieldii"
         });
-    });
+    });*
 
     it('should return response on call', async () => {       
 	    const res = await chai.request(app).get('/api/tortues');
