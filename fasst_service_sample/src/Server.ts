@@ -9,55 +9,63 @@ import 'express-async-errors';
 
 import BaseRouter from './routes';
 import logger from '@shared/Logger';
+import mongoose from 'mongoose';
 
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
 
 
 
+const init = async () => {
 /************************************************************************************
  *                              Set basic express settings
  ***********************************************************************************/
+	const mongoDBUrl = 'mongodb://localhost/tortues';
+	await mongoose.connect('mongodb://localhost/tortues',  { useNewUrlParser: true, useUnifiedTopology: true });
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(cookieParser());
+	console.log(`Connected at ${mongoDBUrl}`);
+	app.use(express.json());
+	app.use(express.urlencoded({extended: true}));
+	app.use(cookieParser());
 
-// Show routes called in console during development
-if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
-}
+	// Show routes called in console during development
+	if (process.env.NODE_ENV === 'development') {
+		app.use(morgan('dev'));
+	}
 
-// Security
-if (process.env.NODE_ENV === 'production') {
-    app.use(helmet());
-}
+	// Security
+	if (process.env.NODE_ENV === 'production') {
+		app.use(helmet());
+	}
 
-// Add APIs
-app.use('/api', BaseRouter);
+	// Add APIs
+	app.use('/api', BaseRouter);
 
-// Print API errors
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    logger.err(err, true);
-    return res.status(BAD_REQUEST).json({
-        error: err.message,
-    });
-});
+	// Print API errors
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+		logger.err(err, true);
+		return res.status(BAD_REQUEST).json({
+			error: err.message,
+		});
+	});
 
 
 
-/************************************************************************************
+	/************************************************************************************
  *                              Serve front-end content
  ***********************************************************************************/
 
-const viewsDir = path.join(__dirname, 'views');
-app.set('views', viewsDir);
-const staticDir = path.join(__dirname, 'public');
-app.use(express.static(staticDir));
-app.get('*', (req: Request, res: Response) => {
-    res.sendFile('index.html', {root: viewsDir});
-});
+	const viewsDir = path.join(__dirname, 'views');
+	app.set('views', viewsDir);
+	const staticDir = path.join(__dirname, 'public');
+	app.use(express.static(staticDir));
+	app.get('*', (req: Request, res: Response) => {
+		res.sendFile('index.html', {root: viewsDir});
+	});
 
-// Export express instance
-export default app;
+	// Export express instance
+	return app;
+};
+
+export default init;
