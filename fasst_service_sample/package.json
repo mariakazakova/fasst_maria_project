@@ -9,7 +9,7 @@
     "start": "node -r module-alias/register ./dist",
     "server:production": "npm run build && npm start",
     "server:development": "nodemon",
-    "test": "mocha -r tsconfig-paths/register -r ts-node/register ./spec/**/*.spec.ts"
+    "test": "mocha -r tsconfig-paths/register -r ts-node/register ./spec/**/*.spec.ts --timeout 2000000 --exit"
   },
   "nodemonConfig": {
     "watch": [
