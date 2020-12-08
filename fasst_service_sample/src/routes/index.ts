@@ -1,22 +1,9 @@
-import { getTortues } from './handlers/tortues/getTortues';
-import { getTortue } from './handlers/tortues/getTortue';
-import { deleteTortue } from './handlers/tortues/deleteTortue';
-import { updateTortue } from './handlers/tortues/updateTortue';
-import { postTortue } from './handlers/tortues/postTortue';
+import turtleRouter from './handlers/tortues';
 import { Router } from 'express';
 
 // Init router and path
 const router = Router();
 
-router.get('/', getTortues);
-
-router.get('/:id', getTortue);
-
-router.put('/:id', updateTortue);
-
-router.post('/', postTortue);
-
-router.delete('/:id', deleteTortue);
-
+router.use('/turtles', turtleRouter);
 
 export default router;
