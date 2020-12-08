@@ -1,16 +1,13 @@
 import app from '@server';
-import * as chai from 'chai';
-import chaiHttp = require('chai-http');
+import chai from 'chai';
+import chaiHttp from 'chai-http';
 import 'mocha';
 
 chai.use(chaiHttp);
-const expect = chai.expect;
 
 describe('Get API Request', () => {
-  it('should return response on call', () => {
-    return chai.request(app).get('/')
-      .then(res => {
-        console.log(res);
-      })
-  })
-})
+	it('should return response on call', async () => {
+	    const res = await chai.request(app).get('/');
+	    console.log(res);
+	});
+});
