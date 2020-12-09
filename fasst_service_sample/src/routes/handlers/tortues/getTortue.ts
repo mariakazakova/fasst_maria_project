@@ -14,6 +14,7 @@ export const getTortue = async (req: Request, res: Response) => {
 
 		res.send(maybeTurtle);
 	} catch (e) {
+		console.error(e);
 		res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error: e.message });
 	}
-}
+};
