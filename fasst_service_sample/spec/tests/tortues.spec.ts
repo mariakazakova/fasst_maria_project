@@ -5,12 +5,61 @@ import { ITortue, tortue } from '@entities/Tortue';
 import 'mocha';
 import assert from 'assert';
 import {StatusCodes} from 'http-status-codes';
-import {Console} from 'inspector';
+import {prop, propEq} from 'ramda';
 
 chai.use(chaiHttp);
 
+const assertEquals = (objToCompare: any, objTarget: any, field: string) => {
+	assert(
+		propEq(
+			field,
+			prop(field, objTarget),
+			objToCompare
+		),
+		`Invalid value for field ${field}`);
+};
+
+const assertStatus = (objToCompare: any, expectedStatus: number = StatusCodes.OK) => {
+	assert(
+		propEq(
+			'status',
+			expectedStatus,
+			objToCompare
+		),
+		`Invalid status, expect ${expectedStatus}`);
+};
+
+const buildRequest = async (method: string, url: string, body?: any, expectedStatus: number = StatusCodes.OK) => {
+	const app = await init();
+	const request: ChaiHttp.Agent = chai.request(app);
+
+	let response;
+	switch (method) {
+	case 'GET':
+		response = await request.get(url);
+		break;
+	case 'POST':
+		response = await request.post(url)
+			.set('content-type', 'application/json')
+			.send(body);
+		break;
+	case 'DELETE':
+		response = await request.delete(url);
+		break;
+	case 'PUT':
+		response = await request.put(url)
+			.set('content-type', 'application/json')
+			.send(body);
+		break;
+	default :
+		response = await request.get(url);
+		break;
+	}
+	assertStatus(response, expectedStatus);
+	return response.body;
+};
+
 describe('hooks', async () => {
-	let request: ChaiHttp.Agent;
 	const unknowMongoId = '5f8b37228af53026d8de9b8f';
 	const firstTurtleId = '5fcf9a06abd5ed8684352436';
 	const testTortues = [{
@@ -39,17 +88,16 @@ describe('hooks', async () => {
 	};
 
 	beforeEach(async () => {
-		const app = await init();
-		request = chai.request(app);
+		// Connect to mongo db server
+		await init();
 
 		await tortue.deleteMany();
 		await tortue.create(testTortues);
 	});
 
 	it('GET api/tortues all tortues', async () => {
-		const response = await request.get('/api/tortues');
-		const data = response.body;
-		assert(response.status==200, 'lestatus de réponse est bien 200');
+		const data = await buildRequest('GET', '/api/tortues');
+
 		assert(Array.isArray(data), 'les donnés retournés est un tableau');
 		assert(data.length == testTortues.length, 'le nombre de tortues est correcte');
 		data.forEach((value: ITortue, i: number) => {
@@ -62,14 +110,10 @@ describe('hooks', async () => {
 	});
 
 	it('POST api/tortues create tortue', async () => {
-		const response = await request.post('/api/tortues/')
-			.set('content-type', 'application/json')
-			.send(tortueToAdd);
+		const data = await buildRequest('POST', '/api/tortues/', tortueToAdd, StatusCodes.CREATED);
 
-		const data = response.body;
-		assert(response.status === StatusCodes.CREATED, 'lestatus de réponse est bien 200');
 		assert('species' in data, 'l\'objet reçus est une tortue');
-		assert(tortueToAdd.name === data.name, 'le nom de tortue est correcte');
+		assertEquals(tortueToAdd, data, 'name');
 		assert(tortueToAdd.age === data.age, 'l\'age de tortue est correcte');
 		assert(tortueToAdd.taille === data.taille, 'la taille de tortue est correcte');
 		assert(tortueToAdd.terrestre === data.terrestre, 'l\'habitat de tortue est correcte');
@@ -77,9 +121,8 @@ describe('hooks', async () => {
 	});
 
 	it('GET api/tortues/:id get one tortue', async () => {
-		const response = await request.get(`/api/tortues/${firstTurtleId}`);
-		const data = response.body;
-		assert(response.status==200, 'lestatus de réponse est bien 200');
+		const data = await buildRequest('GET', `/api/tortues/${firstTurtleId}`);
+
 		assert('species' in data, 'l\'objet reçus est une tortue');
 		assert(testTortues[0].name === data.name, 'le nom de tortue est correcte');
 		assert(testTortues[0].age === data.age, 'l\'age de tortue est correcte');
@@ -89,35 +132,24 @@ describe('hooks', async () => {
 	});
 
 	it('GET api/tortues/:id get one tortue wrong id', async () => {
-		const response = await request.get(`/api/tortues/${unknowMongoId}`);
-		assert(response.status === StatusCodes.NOT_FOUND, 'le status de réponse est bien 404');
+		await buildRequest('GET', `/api/tortues/${unknowMongoId}`, null, StatusCodes.NOT_FOUND);
 	});
 
 	it('DELETE api/tortues/:id delete tortue id correcte', async () => {
-		const response = await request.delete(`/api/tortues/${firstTurtleId}`);
-		assert(response.status==200, 'lestatus de réponse est bien 200');
-		assert(response.ok, 'suppression marche sans problèmes avec id correcte');
+		await buildRequest('DELETE', `/api/tortues/${firstTurtleId}`);
+
+		await buildRequest('GET', `/api/tortues/${firstTurtleId}`, null, StatusCodes.NOT_FOUND);
 	});
 
 	it('DELETE api/tortues delete tortue id erroné', async () => {
-		const response = await request.delete(`/api/tortues/${unknowMongoId}`);
-		console.log(response.status);
-		assert(response.status === StatusCodes.NOT_FOUND, 'le status de réponse est bien 404');
-		assert(!response.ok, 'suppression ne marche pas avec id erroné');
+		await buildRequest('DELETE', `/api/tortues/${unknowMongoId}`, null, StatusCodes.NOT_FOUND);
 	});
 
 	it('PUT api/tortues/:id update tortue', async () => {
-		const response = await request.put(`/api/tortues/${firstTurtleId}`)
-			.send(tortueToAdd);
-		assert(response.ok, 'mise à jour de la tortue ok');
-		assert(response.status==200, 'lestatus de réponse est bien 200');
+		await buildRequest('PUT', `/api/tortues/${firstTurtleId}`, tortueToAdd);
 
-		const app = await init();
-		request = chai.request(app);
+		const data = await buildRequest('GET', `/api/tortues/${firstTurtleId}`);
 
-		const responseAfterUpdate = await request.get(`/api/tortues/${firstTurtleId}`);
-		assert(responseAfterUpdate.status === StatusCodes.OK, 'lestatus de réponse est bien 200');
-		const data = responseAfterUpdate.body;
 		assert(firstTurtleId === data._id, 'id de tortue est correcte');
 		assert(tortueToAdd.name === data.name, 'le nom de tortue est correcte');
 		assert(tortueToAdd.age === data.age, 'l\'age de tortue est correcte');
@@ -127,10 +159,7 @@ describe('hooks', async () => {
 	});
 
 	it('PUT api/tortues/:id update tortue', async () => {
-		const response = await request.put(`/api/tortues/${unknowMongoId}`)
-			.send(tortueToAdd);
-		assert(response.status==StatusCodes.NOT_FOUND, 'le status de réponse est bien 404');
-
+		await buildRequest('PUT', `/api/tortues/${unknowMongoId}`, tortueToAdd, StatusCodes.NOT_FOUND);
 	});
 
 });

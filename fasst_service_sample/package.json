@@ -73,9 +73,11 @@
     "jsonfile": "^6.1.0",
     "module-alias": "^2.2.2",
     "mongoose": "^5.11.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "ramda": "^0.27.1"
   },
   "devDependencies": {
+    "@types/ramda": "^0.27.32",
     "@types/chai": "^4.2.14",
     "@types/chai-http": "^4.2.0",
     "@types/command-line-args": "^5.0.0",
