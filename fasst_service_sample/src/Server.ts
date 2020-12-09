@@ -10,6 +10,7 @@ import 'express-async-errors';
 import BaseRouter from './routes';
 import logger from '@shared/Logger';
 import mongoose from 'mongoose';
+import {pathOr} from 'ramda';
 
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
@@ -17,13 +18,13 @@ const { BAD_REQUEST } = StatusCodes;
 
 
 const init = async () => {
-/************************************************************************************
- *                              Set basic express settings
- ***********************************************************************************/
-	const mongoDBUrl = pathOr('mongodb://db:27017/tortues');
+	/************************************************************************************
+	 *                              Set basic express settings
+	 ***********************************************************************************/
+	const mongoDBUrl = pathOr('mongodb://localhost:27017/tortues', ['env', 'MONGO_DB_URL'], process);
 	await mongoose.connect(mongoDBUrl,  { useNewUrlParser: true, useUnifiedTopology: true });
 
-	console.log(`Connected at ${mongoDBUrl}`);
+	console.log(`Connected at ${mongoDBUrl} !!!!!`);
 	app.use(express.json());
 	app.use(express.urlencoded({extended: true}));
 	app.use(cookieParser());
