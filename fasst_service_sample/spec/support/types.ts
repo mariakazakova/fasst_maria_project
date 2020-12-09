@@ -1,14 +1,14 @@
 import { Response } from 'supertest';
-import { IUser } from '@entities/User';
+import { ITortue } from '@entities/Tortue';
 
 
 export interface IResponse extends Response {
     body: {
-        users: IUser[];
+        users: ITortue[];
         error: string;
     };
 }
 
 export interface IReqBody {
-    user?: IUser;
+    user?: ITortue;
 }

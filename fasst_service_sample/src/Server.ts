@@ -20,8 +20,8 @@ const init = async () => {
 /************************************************************************************
  *                              Set basic express settings
  ***********************************************************************************/
-	const mongoDBUrl = 'mongodb://localhost/tortues';
-	await mongoose.connect('mongodb://localhost/tortues',  { useNewUrlParser: true, useUnifiedTopology: true });
+	const mongoDBUrl = 'mongodb://db:27017/tortues';
+	await mongoose.connect('mongodb://db:27017/tortues',  { useNewUrlParser: true, useUnifiedTopology: true });
 
 	console.log(`Connected at ${mongoDBUrl}`);
 	app.use(express.json());
