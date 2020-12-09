@@ -1,0 +1,11 @@
+# @format
+
+required:
+  NODE_ENV: type d'environnement
+  MONGO_DB_URL: url de la base mongodb
+  JWT_SECRET: secret JWT
+  SESSION_SECRET: secret de la session
+  PORT: port du serveur
+optional:
+  LOGS_TAG: logs
+  API_KEYS: clef d'API

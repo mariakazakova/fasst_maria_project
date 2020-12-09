@@ -1,0 +1,57 @@
+/** @format */
+
+@import './fonts.less';
+// @import './vars.less';
+// @import './react-select.less';
+// @import './react-datepicker.less';
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #eaeff1 !important;
+  min-height: 100vh;
+  margin: 0px;
+}
+
+each(range(10, 20), {
+  .mx-@{value} {
+    margin-right: (@value * .1rem);
+    margin-left: (@value * .1rem);
+  }
+  .my-@{value} {
+    margin-top: (@value * .1rem);
+    margin-bottom: (@value * .1rem);
+  }
+  .ml-@{value} {
+    margin-left: (@value * .1rem);
+  }
+  .mr-@{value} {
+    margin-right: (@value * .1rem);
+  }
+  .mt-@{value} {
+    margin-top: (@value * .1rem);
+  }
+  .mb-@{value} {
+    margin-top: (@value * .1rem);
+  }
+});
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+

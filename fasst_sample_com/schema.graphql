@@ -1,0 +1,10 @@
+# @format
+
+type Home {
+  id: ID
+  message: String
+}
+
+type Query {
+  homepage: Home
+}
