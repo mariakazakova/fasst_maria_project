@@ -2,7 +2,7 @@
   "name": "fasst_service_sample",
   "version": "0.0.0",
   "scripts": {
-    "build": "node ./util/build.js",
+    "build": "tsc --build tsconfig.prod.json",
     "build-debug": "tsc --build tsconfig.prod.json",
     "lint": "eslint --fix .",
     "lint:ci": "eslint .",
