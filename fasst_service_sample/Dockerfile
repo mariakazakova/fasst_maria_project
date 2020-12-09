@@ -1,7 +1,16 @@
-FROM node:15.2.1-alpine
+FROM node:15-alpine
 WORKDIR /app
-COPY ./package*.json /app/
+
+COPY ./package.json /app
+
 RUN yarn install
+
 COPY . /app
+
+# compiler le projet en js
+RUN yarn build
+
 EXPOSE 3000
-CMD ["yarn", "server:production"]
+
+# démarrage simple
+CMD ["yarn", "start"]
