@@ -40,9 +40,9 @@ module.exports = {
       },
     },
     Mutation: {
-      createOneTortle: (parent, { name, age, taille, terrestre, species}, context) => TortueResolver(context).createTortue({ name, age, taille, terrestre, species }),
+      createOneTortle: (parent, { name, age, taille, terrestre, species }, context) => TortueResolver(context).createTortue({ name, age, taille, terrestre, species }),
       signOut: (parent, args, context) => TortueResolver(context).deleteTortue(),
-      updateOneTortle: (parent, { name, age, taille, terrestre, species}, context) => TortueResolver(context).updateTortue({ name, age, taille, terrestre, species })
+      updateOneTortle: (parent, { name, age, taille, terrestre, species }, context) => TortueResolver(context).updateTortue({ name, age, taille, terrestre, species })
     }
   }
 };
