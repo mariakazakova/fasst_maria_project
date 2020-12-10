@@ -1,5 +1,5 @@
 # source: http://localhost:3000/graphql
-# timestamp: Thu Dec 10 2020 16:09:02 GMT+0100 (heure normale d’Europe centrale)
+# timestamp: Thu Dec 10 2020 17:58:21 GMT+0100 (heure normale d’Europe centrale)
 
 type Home {
   id: ID
@@ -13,4 +13,8 @@ type Query {
 
 type Tortue {
   id: ID
+  name: String
+  age: String
+  taille: String
+  species: String
 }

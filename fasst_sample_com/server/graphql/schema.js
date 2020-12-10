@@ -23,8 +23,8 @@ const _type = name => require(`./type/${name}.js`);
 const schemaTypes = [
   // _type('SubscriptionType'),
   // _type('MutationType'),
-  _type('HomeType'),
   _type('TortueType'),
+  _type('HomeType'),
   _type('QueryType'),
 ];
 

@@ -1,17 +1,19 @@
-import tortues from '../../services/tortues';
+const tortueService = require('../../services/tortues');
+import { KO, OK } from './helpers';
 
 const TortueResolver = () => (() => {
+
   const getAllTortles = async () => {
     try {
-      return await tortues('getTortues');
+      return await tortueService('getTortues');
     } catch (err) {
-      return [];
+      return KO(err);
     }
   };
 
   const getOneTortle = async id => {
     try {
-      return await tortues('getOneTortue', { id });
+      return await tortueService('getOneTortue', { id });
     } catch (err) {
       return {};
     }
@@ -19,7 +21,7 @@ const TortueResolver = () => (() => {
 
   const createOneTortle = async (tortue) => {
     try {
-      return await tortues('createTortue', tortue);
+      return await tortueService('createTortue', tortue);
     } catch (err) {
       return {};
     }
@@ -27,7 +29,7 @@ const TortueResolver = () => (() => {
 
   const deleteOneTortle = async id => {
     try {
-      return await tortues('deleteTortue', { id });
+      return await tortueService('deleteTortue', { id });
     } catch (err) {
       return {};
     }
@@ -35,7 +37,7 @@ const TortueResolver = () => (() => {
 
   const updateOneTortle = async (id, tortue) => {
     try {
-      return await tortues('updateTortue', { ...tortue, id });
+      return await tortueService('updateTortue', { ...tortue, id });
     } catch (err) {
       return {};
     }

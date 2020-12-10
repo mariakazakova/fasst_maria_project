@@ -1,7 +1,7 @@
-import service from './service';
+import service from '@fasstech/service';
 
-const tortueService = () => (command, args) => {
-  return service(
+const tortueService = (command, args) =>
+  service(
     'tortue',
     process.env.TORTUES_SERVICE_URL,
     {
@@ -41,6 +41,5 @@ const tortueService = () => (command, args) => {
       }
     }
   )(command, args);
-};
-  
+
 module.exports = tortueService;
