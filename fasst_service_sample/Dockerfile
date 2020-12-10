@@ -14,4 +14,3 @@ EXPOSE 3001
 
 # démarrage simple
 CMD ["yarn", "start"]
-
