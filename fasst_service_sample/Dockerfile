@@ -10,8 +10,6 @@ COPY . /app
 # compiler le projet en js
 RUN yarn build
 
-EXPOSE 3001
-
 # démarrage simple
 CMD ["yarn", "start"]
 
