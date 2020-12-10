@@ -25,7 +25,7 @@ const init = async () => {
 	const mongoDBUrl = pathOr('mongodb://localhost:27017/tortues', ['env', 'MONGO_DB_URL'], process);
 	await mongoose.connect(mongoDBUrl,  { useNewUrlParser: true, useUnifiedTopology: true });
 
-	console.log(`Connected at ${mongoDBUrl} !!!!!`);
+	console.log(`Connected at ${mongoDBUrl} !`);
 	app.use(express.json());
 	app.use(express.urlencoded({extended: true}));
 	app.use(cookieParser());

@@ -1213,6 +1213,18 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
+"@fasstech/service@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@fasstech/service/-/service-3.0.0.tgz#ba53f63ea9bdd875e1e7bfa5cae97a1bf5b1b3b6"
+  integrity sha512-vIUOwqPhuTiZaVO1+5x9SwW233G8jPYQT44or1sZmT+e/u8rP+RiyaQ2NbVzBeA4dctbv45oSaN3E8oyrue/RQ==
+  dependencies:
+    assert "^2.0.0"
+    form-data "^3.0.0"
+    node-fetch "^2.6.0"
+    querystring "^0.2.0"
+    ramda "^0.27.0"
+    string "^3.3.3"
+
 "@hot-loader/react-dom@^16.13.0":
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/@hot-loader/react-dom/-/react-dom-16.13.0.tgz#de245b42358110baf80aaf47a0592153d4047997"
