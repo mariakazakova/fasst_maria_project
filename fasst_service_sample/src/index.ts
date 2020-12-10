@@ -1,4 +1,3 @@
-import './preStart'; // Must be the first import
 import init from '@server';
 import logger from '@shared/Logger';
 

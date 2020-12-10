@@ -24,6 +24,7 @@ const schemaTypes = [
   // _type('SubscriptionType'),
   // _type('MutationType'),
   _type('HomeType'),
+  _type('TortueType'),
   _type('QueryType'),
 ];
 

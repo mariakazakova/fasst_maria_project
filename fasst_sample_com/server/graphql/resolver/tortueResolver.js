@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-import { assoc, compose, dissoc, join, path as RPath, values } from 'ramda';
 import tortues from '../../services/tortues';
 
 const TortueResolver = () => (() => {
