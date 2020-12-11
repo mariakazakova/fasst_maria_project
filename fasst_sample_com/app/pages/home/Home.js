@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Divider } from 'antd';
 import { QHome } from '../../_graphql/queries';
+import { QTortles } from '../../_graphql/queries';
 
 const DivFullPage = styled.div`
   height: 100vh;
@@ -12,7 +13,7 @@ const DivFullPage = styled.div`
   text-align: center;
 `;
 
-const Home = () => (
+/*const Home = () => (
   <QHome>
     {({ message }) => (
       <DivFullPage>
@@ -24,7 +25,18 @@ const Home = () => (
       </DivFullPage>
     )}
   </QHome>
+);*/
+const Home = () => (
+  <QTortles>
+    {({ message }) => (
+      <DivFullPage>
+        <div>
+          <Divider />
+          <h3>{name}</h3>
+        </div>
+      </DivFullPage>
+    )}
+  </QTortles>
 );
-
 
 export default Home;
