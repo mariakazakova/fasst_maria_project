@@ -5,7 +5,7 @@ const TortueResolver = () => {
 
   const getAllTortles = async () => {
     try {
-      const response =  await tortueService('getTortues');
+      const response = await tortueService('getTortues');
       return response;
     } catch (err) {
       console.error(err);
@@ -24,7 +24,7 @@ const TortueResolver = () => {
   const createOneTortle = async (tortue) => {
     try {
       const response = await tortueService('createTortue', tortue);
-      return OK({tortue: response});
+      return OK({ tortue: response });
     } catch (err) {
       return {};
     }
@@ -32,8 +32,8 @@ const TortueResolver = () => {
 
   const deleteOneTortle = async (id) => {
     try {
-        await tortueService('deleteTortue', {id: id});
-        return OK();
+      await tortueService('deleteTortue', { id: id });
+      return OK();
     } catch (er) {
       return {};
     }
@@ -42,7 +42,7 @@ const TortueResolver = () => {
   const updateOneTortle = async (tortue, id) => {
     try {
       const response = await tortueService('updateTortue', { ...tortue, id });
-      return OK({tortue: response});
+      return OK({ tortue: response });
     } catch (err) {
       return {};
     }

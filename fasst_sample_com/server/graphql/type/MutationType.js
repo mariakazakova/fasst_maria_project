@@ -41,8 +41,8 @@ module.exports = {
     },
     Mutation: {
       createOneTortle: (parent, { name, age, taille, terrestre, species }, context) => TortueResolver(context).createOneTortle({ name, age, taille, terrestre, species }),
-      deleteOneTortle: (parent, {id}, context) => TortueResolver(context).deleteOneTortle(id),
-      updateOneTortle: (parent, { name, age, taille, terrestre, species, id }, context) => TortueResolver(context).updateOneTortle({ name, age, taille, terrestre, species}, id)
+      deleteOneTortle: (parent, { id }, context) => TortueResolver(context).deleteOneTortle(id),
+      updateOneTortle: (parent, { name, age, taille, terrestre, species, id }, context) => TortueResolver(context).updateOneTortle({ name, age, taille, terrestre, species }, id)
     }
   }
 };

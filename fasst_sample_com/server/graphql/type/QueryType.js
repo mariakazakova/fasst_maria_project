@@ -15,7 +15,7 @@ module.exports = {
         return { message: 'Starter kit' };
       },
       getTortues: (parent, args, context) => TortueResolver(context).getAllTortles(),
-      getTortue: (parent, {id}, context) => TortueResolver(context).getOneTortle(id)
+      getTortue: (parent, { id }, context) => TortueResolver(context).getOneTortle(id)
     }
   }
 };
