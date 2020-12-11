@@ -7,9 +7,10 @@ module.exports = {
       name: String
       age: String
       taille: String
+      terrestre: Boolean
       species: String
     }
-    `,
+  `,
   resolvers: {
   }
 };

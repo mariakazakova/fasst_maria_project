@@ -6,7 +6,7 @@ module.exports = {
     type Query {
       homepage: Home
       getTortues: [Tortue],
-      getTortue: [Tortue]
+      getTortue(id: ID): Tortue
     }
   `,
   resolvers: {
@@ -15,7 +15,7 @@ module.exports = {
         return { message: 'Starter kit' };
       },
       getTortues: (parent, args, context) => TortueResolver(context).getAllTortles(),
-      getTortue: (parent, args, context) => TortueResolver(context).getOneTortue()
+      getTortue: (parent, {id}, context) => TortueResolver(context).getOneTortle(id)
     }
   }
 };

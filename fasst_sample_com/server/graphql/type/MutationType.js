@@ -28,8 +28,8 @@ module.exports = {
 
     type Mutation {
       createOneTortle(name: String, age: String, taille: String, terrestre: Boolean, species: String): CreateOneTortleMutationResponse
-      deleteOneTortle: DeleteTortleMutationResponse
-      updateOneTortle(name: String, age: String, taille: String, terrestre: Boolean, species: String): UpdateTortleMutationResponse
+      deleteOneTortle(id: ID): DeleteTortleMutationResponse
+      updateOneTortle(name: String, age: String, taille: String, terrestre: Boolean, species: String, id: ID): UpdateTortleMutationResponse
     }
   `,
 
@@ -40,9 +40,9 @@ module.exports = {
       },
     },
     Mutation: {
-      createOneTortle: (parent, { name, age, taille, terrestre, species }, context) => TortueResolver(context).createTortue({ name, age, taille, terrestre, species }),
-      deleteOneTortle: (parent, args, context) => TortueResolver(context).deleteTortue(),
-      updateOneTortle: (parent, { name, age, taille, terrestre, species }, context) => TortueResolver(context).updateTortue({ name, age, taille, terrestre, species })
+      createOneTortle: (parent, { name, age, taille, terrestre, species }, context) => TortueResolver(context).createOneTortle({ name, age, taille, terrestre, species }),
+      deleteOneTortle: (parent, {id}, context) => TortueResolver(context).deleteOneTortle(id),
+      updateOneTortle: (parent, { name, age, taille, terrestre, species, id }, context) => TortueResolver(context).updateOneTortle({ name, age, taille, terrestre, species}, id)
     }
   }
 };

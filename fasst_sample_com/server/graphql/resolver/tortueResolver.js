@@ -1,12 +1,14 @@
 const tortueService = require('../../services/tortues');
 import { KO, OK } from './helpers';
 
-const TortueResolver = () => (() => {
+const TortueResolver = () => {
 
   const getAllTortles = async () => {
     try {
-      return await tortueService('getTortues');
+      const response =  await tortueService('getTortues');
+      return response;
     } catch (err) {
+      console.error(err);
       return KO(err);
     }
   };
@@ -21,23 +23,26 @@ const TortueResolver = () => (() => {
 
   const createOneTortle = async (tortue) => {
     try {
-      return await tortueService('createTortue', tortue);
+      const response = await tortueService('createTortue', tortue);
+      return OK({tortue: response});
     } catch (err) {
       return {};
     }
   };
 
-  const deleteOneTortle = async id => {
+  const deleteOneTortle = async (id) => {
     try {
-      return await tortueService('deleteTortue', { id });
-    } catch (err) {
+        await tortueService('deleteTortue', {id: id});
+        return OK();
+    } catch (er) {
       return {};
     }
   };
 
-  const updateOneTortle = async (id, tortue) => {
+  const updateOneTortle = async (tortue, id) => {
     try {
-      return await tortueService('updateTortue', { ...tortue, id });
+      const response = await tortueService('updateTortue', { ...tortue, id });
+      return OK({tortue: response});
     } catch (err) {
       return {};
     }
@@ -50,6 +55,6 @@ const TortueResolver = () => (() => {
     deleteOneTortle,
     updateOneTortle
   };
-})();
+};
 
 module.exports = TortueResolver;

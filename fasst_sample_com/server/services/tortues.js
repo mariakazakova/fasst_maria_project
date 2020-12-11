@@ -36,7 +36,7 @@ const tortueService = (command, args) =>
         ]
       },
       deleteTortue: {
-        route: '/delete/:id',
+        route: '/api/tortues/:id',
         method: 'DELETE'
       }
     }

@@ -7,7 +7,7 @@ export interface ITortueDao {
     getAll: () => Promise<ITortue[]>;
     add: (Tortue: ITortue) => Promise<ITortue>;
     update: (Tortue: ITortue, id: string) => Promise<ITortue | null>;
-    delete: (id: string) => Promise<void>;
+    delete: (id: string) => Promise<string>;
 }
 
 class TortueDao implements ITortueDao {
@@ -28,9 +28,10 @@ class TortueDao implements ITortueDao {
         return tortue.findByIdAndUpdate({ _id: id }, newTortue);
     }
 
-    public async delete(id: string): Promise<void> {
-        return tortue.deleteOne({ _id: id });
-    }
+    public async delete(id: string): Promise<string> {
+        await tortue.deleteOne({ _id: id });
+    return id;
+}
 
 }
 
