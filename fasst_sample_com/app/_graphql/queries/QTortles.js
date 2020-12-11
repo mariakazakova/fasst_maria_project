@@ -3,7 +3,7 @@ import { graphql } from 'react-relay';
 import { Query } from '..';
 import PropTypes from 'prop-types';
 import {
-    populateChildren
+  populateChildren
 } from './toolbox';
 
 const QTortlesQuery = graphql`
@@ -20,18 +20,18 @@ const QTortlesQuery = graphql`
 `;
 
 const QTortles = ({
-    children,
+  children,
 }) => (
-        <Query
-            query={QTortlesQuery}
-            caching={false}
-        >
-            {populateChildren('getTortues')(children)}
-        </Query>
-    );
+  <Query
+    query={QTortlesQuery}
+    caching={false}
+  >
+    {populateChildren('getTortues')(children)}
+  </Query>
+);
 
 QTortles.propTypes = {
-    args: PropTypes.object
+  args: PropTypes.object
 };
 
 
