@@ -1,0 +1,17 @@
+{
+  "version": "0.1.26",
+  "mongo": {
+    "url": "mongodb://db/com"
+  },
+  "apiKeys": [
+    {
+      "clientId": "hey",
+      "secretKey": "IWX9BL9UMHSM7J1VV6FXSYIMCAHSN0KZ367R6UHL1DIPPXUR",
+      "scope": "all"
+    }
+  ],
+  "jwt": {
+    "expiresIn": "760d",
+    "secret": "fa182b45-bd52-4f72-ae1b-9197bab3792f"
+  }
+}

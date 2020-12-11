@@ -1,0 +1,25 @@
+# @format
+
+version: '3'
+services:
+  fasst_starter_kit:
+    container_name: fasst_starter_kit
+    build:
+      context: .
+    environment:
+      MONGO_DB_URL: 'mongodb://host.docker.internal:27017/fasst_starter_kit'
+      NODE_ENV: development
+      JWT_SECRET: art#_bnth_cvfgt_openf_12fR
+      SESSION_SECRET: secret_de_la_session
+      PORT: 3000
+      API_KEYS: hey:IWX9BL9UMHSM7J1VV6FXSYIMCAHSN0KZ367R6UHL1DIPPXUR:all
+      SERVICE_URL: http://fasst_starter_kit:3000
+      GRAPHQL_WS_URL: ws://fasst_starter_kit:3000/graphql
+      TZ: 'Europe/Paris'
+    volumes:
+      - ./app:/service/app
+      - ./server:/service/server
+    #command:
+    #  yarn run server:development
+    ports:
+      - 3448:3000

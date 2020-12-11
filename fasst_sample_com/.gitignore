@@ -1,0 +1,14 @@
+node_modules
+public/dist
+.DS_Store
+/data
+/uploads
+.idea
+logs
+.env
+/temp
+.vscode
+/getGraphQLSchema
+yarn-error.log
+logs.txt
+

@@ -1,0 +1,65 @@
+# @format
+
+kind: pipeline
+name: default
+
+workspace:
+  base: /service
+
+services:
+  - name: mongo
+    image: mongo:4.0
+    command: [--smallfiles]
+    ports:
+      - 27017
+
+steps:
+  - name: test-server
+    image: node:lts-alpine
+    commands:
+      - yarn install
+      - yarn run test:all
+    environment:
+      MONGO_DB_URL: mongodb://mongo:27017/test
+      CLEAR_COLLECTION: enabled
+      NODE_ENV: development
+
+  - name: build-image
+    image: plugins/docker
+    settings:
+      username: ${DOCKER_USERNAME}
+      password: ${DOCKER_PASSWORD}
+      repo: fasstech/fasst_starter_kit
+      auto_tag: true
+      build_args:
+        - BUILD_VERSION=${DRONE_TAG}
+
+  - name: slack
+    image: plugins/slack
+    settings:
+      webhook: https://hooks.slack.com/services/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
+      channel: drone_ci
+      link_names: true
+      template: >
+        {{#success build.status}}
+          [ *{{ uppercasefirst build.status }}* : *{{repo.name}}* ] : build {{build.number}} succeeded. Good job. <@{{build.author}}>
+          Author: {{ build.author }}
+          Drone Build: <{{ build.link }}|#{{ build.number }}>
+          Commit Link: <https://github.com/{{repo.owner}}/{{repo.name}}/commit/{{build.commit}}|{{ truncate build.commit 10 }}>
+        {{else}}
+          [ *{{ uppercasefirst build.status }}* : *{{repo.name}}* ] : build {{build.number}} failed. Fix me please. <@{{build.author}}>
+          Author: {{ build.author }}
+          Drone Build: <{{ build.link }}|#{{ build.number }}>
+          Commit Link: <https://github.com/{{repo.owner}}/{{repo.name}}/commit/{{build.commit}}|{{ truncate build.commit 10 }}>
+        {{/success}}
+    when:
+      status: [success, failure]
+
+trigger:
+  branch:
+    - master
+    - fix/*
+    - demo/*
+  event:
+    - push
+    - tag
