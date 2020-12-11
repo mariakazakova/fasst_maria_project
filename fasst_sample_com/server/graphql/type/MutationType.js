@@ -35,7 +35,7 @@ module.exports = {
 
   resolvers: {
     MutationResponse: {
-      __resolveType() {
+      __resolveType () {
         return null;
       },
     },
