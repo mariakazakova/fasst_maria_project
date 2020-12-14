@@ -28,7 +28,7 @@ const DivFullPage = styled.div`
 );*/
 const Home = () => (
   <QTortles>
-    {({name}) => (
+    {({ name }) => (
       <DivFullPage>
         <h1>page</h1>
         <div>
