@@ -12,9 +12,10 @@ type Query {
 }
 
 type Tortue {
-  id: ID
+  _id: ID
   name: String
   age: String
   taille: String
+  terrestre: Boolean
   species: String
 }

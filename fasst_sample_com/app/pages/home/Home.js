@@ -28,10 +28,10 @@ const DivFullPage = styled.div`
 );*/
 const Home = () => (
   <QTortles>
-    {({ message }) => (
+    {({name}) => (
       <DivFullPage>
+        <h1>page</h1>
         <div>
-          <Divider />
           <h3>{name}</h3>
         </div>
       </DivFullPage>
