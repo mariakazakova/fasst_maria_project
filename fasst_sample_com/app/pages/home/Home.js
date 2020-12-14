@@ -44,29 +44,29 @@ const Home = () => (
   <QTortles>
     {(tortues) => {
       const listTortles = tortues.map((tortue) =>
-      <tr key={tortue._id}>
-        <td>{tortue.name}</td>
-        <td>{tortue.age}</td>
-        <td>{tortue.taille}</td>
-        <td>{tortue.terrestre?'Terrestre':'Aquatique'}</td>
-        <td>{tortue.species}</td>
-      </tr>
-    );
+        <tr key={tortue._id}>
+          <td>{tortue.name}</td>
+          <td>{tortue.age}</td>
+          <td>{tortue.taille}</td>
+          <td>{tortue.terrestre ? 'Terrestre' : 'Aquatique'}</td>
+          <td>{tortue.species}</td>
+        </tr>
+      );
       return (
-      <DivFullPage>
-        <h1>TOUS LES TORTUES</h1>
-        <table className="center">
-          <thead>
-            <tr>
-              <th>Nom</th><th>Age</th><th>Taille</th><th>Terrestre/Aquatique</th><th>Espèce</th>
-            </tr>
-          </thead>
-          <tbody>
-            {listTortles}
-          </tbody>
-        </table>
-      </DivFullPage>
-      )
+        <DivFullPage>
+          <h1>TOUS LES TORTUES</h1>
+          <table className="center">
+            <thead>
+              <tr>
+                <th>Nom</th><th>Age</th><th>Taille</th><th>Terrestre/Aquatique</th><th>Espèce</th>
+              </tr>
+            </thead>
+            <tbody>
+              {listTortles}
+            </tbody>
+          </table>
+        </DivFullPage>
+      );
     }
     }
   </QTortles>
