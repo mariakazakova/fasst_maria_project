@@ -33,25 +33,25 @@ mutation QAddTortleMutation($name: String!,
 `;
 
 export default (args, done) => {
-      const variables = {
-        name: args.name,
-        age: args.age,
-        taille: args.taille,
-        terrestre: args.terrestre,
-        species: args.species
+  const variables = {
+    name: args.name,
+    age: args.age,
+    taille: args.taille,
+    terrestre: args.terrestre,
+    species: args.species
+  };
+  commitMutation(
+    environment(),
+    {
+      mutation, // * Voir le GQL au dessus
+      variables, // * Les variables definie,
+      updater: (store, { createOneTortle }) => {},
+      onCompleted: ({ createOneTortle }) => {
+        done(false, createOneTortle);
+      },
+      onError: (err) => {
+        done(true, err);
       }
-      commitMutation(
-        environment(),
-        {
-          mutation,   // * Voir le GQL au dessus
-          variables,  // * Les variables definie,
-          updater: (store, { createOneTortle }) => {},
-          onCompleted: ({createOneTortle}) => {
-            done(false,createOneTortle);
-          },
-          onError: (err) => {
-            done(true, err)
-          }
-        }
-      )
     }
+  );
+};

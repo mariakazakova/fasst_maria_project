@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Modal, Button, Form, Input, Checkbox } from 'antd';
 import QTortlesMutation from '../../_graphql/mutations/QAddTortle';
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller } from 'react-hook-form';
 const layout = {
   labelCol: {
     span: 8,
@@ -20,17 +20,17 @@ const tailLayout = {
 };
 
 const CreateTortleForm = () => {
-  const { handleSubmit, control} = useForm();
-  const onSubmit = data => console.log("data ",data);
+  const { handleSubmit, control } = useForm();
+  const onSubmit = data => console.log('data ', data);
 
-    const onCreateTortleHandler = () => {
-      console.log("okokok");
-      QTortlesMutation({
+  const onCreateTortleHandler = () => {
+    console.log('okokok');
+    QTortlesMutation({
         
-      }, (hasError, data) => {
-        // * Reaction a la mutation
-      });
-    };
+    }, (hasError, data) => {
+      // * Reaction a la mutation
+    });
+  };
 
     
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -56,41 +56,41 @@ const CreateTortleForm = () => {
       </Button>
       <Modal title="Creation de tortue" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <Form
-        {...layout}
-        name="basic"
-        //onSubmit={handleSubmit(onSubmit)}
-        onSubmit={handleSubmit(data => console.log(data))}
-      >
+          {...layout}
+          name="basic"
+          //onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(data => console.log(data))}
+        >
 
           <Controller
             control={control}
             name="ReactDatepicker"
             as={<Form.Item
-                label="Name"
-                name="name"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please input your username!',
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>}
+              label="Name"
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your username!',
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>}
           />
           
           <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
         </Form>
 
       </Modal>
     </>
   );
 
-  }
+};
 
 export default CreateTortleForm; 
 

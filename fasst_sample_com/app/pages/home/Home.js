@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { QTortles } from '../../_graphql/queries';
-import CreateTortleForm from './CreateTortleForm'
+import CreateTortleForm from './CreateTortleForm';
 
 const DivFullPage = styled.div`
   height: 100vh;
