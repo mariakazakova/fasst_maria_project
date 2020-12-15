@@ -58,7 +58,7 @@ const CreateTortleForm = () => {
           {...layout}
           name="basic"
           //onSubmit={handleSubmit(onSubmit)}
-          onSubmit={handleSubmit(data => console.log(data))}
+          onSubmit={handleSubmit(data => console.log("data ", data))}
         >
 
           <Controller
@@ -68,7 +68,6 @@ const CreateTortleForm = () => {
             render={({ onChange, value, name }) => <Form.Item
               label="Name"
               onChange={onChange}
-              selected={value}
               rules={[
                 {
                   required: true,
@@ -81,12 +80,12 @@ const CreateTortleForm = () => {
           />
 
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit">
+            <Button type="submit" htmlType="submit">
               Submit
             </Button>
           </Form.Item>
-        </Form>
 
+        </Form>
       </Modal>
     </>
   );

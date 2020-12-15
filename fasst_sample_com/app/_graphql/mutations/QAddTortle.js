@@ -1,13 +1,9 @@
 import React from 'react';
 import { commitMutation, graphql } from 'react-relay';
 import { environment } from '..';
-import PropTypes from 'prop-types';
-import {
-  populateChildren
-} from '../queries/toolbox';
 
 const mutation = graphql`
-mutation QAddTortleMutation($name: String!,
+  mutation QAddTortleMutation($name: String!,
                         $age: String,
                         $taille: String,
                         $terrestre: Boolean,
