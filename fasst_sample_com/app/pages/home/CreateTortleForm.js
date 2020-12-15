@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Modal, Button, Form, Input } from 'antd';
-import QTortlesMutation from '../../_graphql/mutations/QAddTortle';
-import { useForm, Controller } from 'react-hook-form';
-import { SampleForm } from './SampleForm';
+import { Modal, Button } from 'antd';
+import { TortleForm } from './TortleForm';
 
 const layout = {
   labelCol: {
@@ -20,19 +18,7 @@ const tailLayout = {
   },
 };
 
-const CreateTortleForm = () => {
-  const { handleSubmit, control } = useForm();
-  const onSubmit = data => console.log('data ', data);
-
-  const onCreateTortleHandler = () => {
-    console.log('okokok',);
-    QTortlesMutation({
-
-    }, (hasError, data) => {
-      // * Reaction a la mutation
-    });
-  };
-
+const CreateTortleForm = props => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -42,7 +28,6 @@ const CreateTortleForm = () => {
   };
 
   const handleOk = () => {
-    onCreateTortleHandler();
     setIsModalVisible(false);
   };
 
@@ -56,7 +41,7 @@ const CreateTortleForm = () => {
         Créer une tortue
       </Button>
       <Modal title="Creation de tortue" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-      <SampleForm/>
+        <TortleForm createTortue={props.createTortue} onCancel={handleCancel}/>
       </Modal>
     </>
   );
