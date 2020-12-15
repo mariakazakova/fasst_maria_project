@@ -58,7 +58,7 @@ const CreateTortleForm = () => {
           {...layout}
           name="basic"
           //onSubmit={handleSubmit(onSubmit)}
-          onSubmit={handleSubmit(data => console.log("data ", data))}
+          onSubmit={handleSubmit(data => console.log('data ', data))}
         >
 
           <Controller
