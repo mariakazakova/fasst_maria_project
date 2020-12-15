@@ -20,35 +20,38 @@ const tailLayout = {
 
 const CreateTortleForm = () => {
   const { handleSubmit, control } = useForm();
-  const onSubmit = data => console.log('data ', data);
-
-  const onCreateTortleHandler = () => {
-    console.log('okokok');
-    QTortlesMutation({
-
-    }, (hasError, data) => {
-      // * Reaction a la mutation
-    });
+  const onSubmit = data => {
+    console.log('data ', data);
   };
 
+  // const onCreateTortleHandler = () => {
+  //   console.log('okokok');
+  //   QTortlesMutation({
+  //
+  //   }, (hasError, data) => {
+  //     // * Reaction a la mutation
+  //   });
+  // };
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    onCreateTortleHandler();
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  // const [isModalVisible, setIsModalVisible] = useState(false);
+  //
+  //
+  // const showModal = () => {
+  //   setIsModalVisible(true);
+  // };
+  //
+  // const handleOk = () => {
+  //   onCreateTortleHandler();
+  //   setIsModalVisible(false);
+  // };
+  //
+  // const handleCancel = () => {
+  //   setIsModalVisible(false);
+  // };
 
   return (
+/*
     <>
       <Button type="primary" onClick={showModal}>
         Créer une tortue
@@ -88,6 +91,32 @@ const CreateTortleForm = () => {
         </Form>
       </Modal>
     </>
+*/
+    // <>
+    //   <Button type="primary" onClick={showModal}>
+    //     Créer une tortue
+    //   </Button>
+    //   <Modal title="Creation de tortue" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+    >
+
+      <Controller
+        as={
+          <Form.Item label="Nom">
+            <Input />
+          </Form.Item>
+        }
+        name="name"
+        control={control}
+        defaultValue=""
+      />
+
+      <Button htmlType="submit">Submit</Button>
+    </form>
+    //
+    //   </Modal>
+    // </>
   );
 
 };

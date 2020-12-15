@@ -1,6 +1,6 @@
 import React from 'react';
 import { commitMutation, graphql } from 'react-relay';
-import { environment } from '..';
+import environment from '..';
 
 const mutation = graphql`
   mutation QAddTortleMutation($name: String!,
