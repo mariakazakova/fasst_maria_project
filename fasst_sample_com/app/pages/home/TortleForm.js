@@ -41,7 +41,7 @@ export const TortleForm = props => {
           required: true
         }}
         render={({ onChange, value }) => <TextInput label={'Nom'} onChange={onChange} value={value}/>}
-        />
+      />
 
       <Controller
         name="age"
@@ -51,7 +51,7 @@ export const TortleForm = props => {
           required: true
         }}
         render={({ onChange, value }) => <TextInput label={'Age'} onChange={onChange} value={value}/>}
-        />
+      />
 
       <Controller
         name="taille"
@@ -61,7 +61,7 @@ export const TortleForm = props => {
           required: true
         }}
         render={({ onChange, value }) => <TextInput label={'Taille'} onChange={onChange} value={value}/>}
-        />
+      />
 
       <Controller
         name="species"
@@ -71,7 +71,7 @@ export const TortleForm = props => {
           required: true
         }}
         render={({ onChange, value }) => <TextInput label={'Espèce'} onChange={onChange} value={value}/>}
-        />
+      />
 
       <Controller
         name="terrestre"
@@ -81,7 +81,7 @@ export const TortleForm = props => {
           required: true
         }}
         render={({ onChange, value }) => <SelectInput label={'Terrestre/Aquatique'} onChange={onChange} value={value}/>}
-        />
+      />
       <br/>
       <br/>
       <Button type="primary" htmlType="submit">

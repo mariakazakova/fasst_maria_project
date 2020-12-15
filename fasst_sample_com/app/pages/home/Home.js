@@ -33,7 +33,7 @@ const Home = () => {
     <DivFullPage>
       <ListeTortues/>
     </DivFullPage>
-  )
+  );
 };
 
-  export default Home;
+export default Home;
