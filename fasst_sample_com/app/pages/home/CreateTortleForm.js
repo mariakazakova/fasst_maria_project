@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import { Modal, Button, Form, Input, Checkbox } from 'antd';
+import { Modal, Button, Form, Input } from 'antd';
 import QTortlesMutation from '../../_graphql/mutations/QAddTortle';
 import { useForm, Controller } from 'react-hook-form';
 const layout = {
@@ -26,13 +25,13 @@ const CreateTortleForm = () => {
   const onCreateTortleHandler = () => {
     console.log('okokok');
     QTortlesMutation({
-        
+
     }, (hasError, data) => {
       // * Reaction a la mutation
     });
   };
 
-    
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
 
@@ -64,10 +63,12 @@ const CreateTortleForm = () => {
 
           <Controller
             control={control}
-            name="ReactDatepicker"
-            as={<Form.Item
+            defaultValue=""
+            name="name"
+            render={({ onChange, value, name }) => <Form.Item
               label="Name"
-              name="name"
+              onChange={onChange}
+              selected={value}
               rules={[
                 {
                   required: true,
@@ -78,7 +79,7 @@ const CreateTortleForm = () => {
               <Input />
             </Form.Item>}
           />
-          
+
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit">
               Submit
@@ -92,7 +93,7 @@ const CreateTortleForm = () => {
 
 };
 
-export default CreateTortleForm; 
+export default CreateTortleForm;
 
 /*<Form.Item
             label="Age"
