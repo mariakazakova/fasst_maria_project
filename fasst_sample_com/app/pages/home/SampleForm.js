@@ -30,7 +30,7 @@ export const SampleForm = () => {
         }}
       />
 
-      <Button block type="primary" htmlType="submit">
+      <Button type="primary" htmlType="submit">
         Submit
       </Button>
     </form>

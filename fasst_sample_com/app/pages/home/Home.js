@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { QTortles } from '../../_graphql/queries';
 import CreateTortleForm from './CreateTortleForm';
-import { SampleForm } from './SampleForm';
 
 const DivFullPage = styled.div`
   height: 100vh;
@@ -45,7 +44,6 @@ const Home = () => (
       return (
         <DivFullPage>
           <h1>TOUS LES TORTUES</h1>
-          <SampleForm/>
           <CreateTortleForm/>
           <table className="center">
             <thead>
