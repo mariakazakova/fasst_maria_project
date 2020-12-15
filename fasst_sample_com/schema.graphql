@@ -6,9 +6,26 @@ type Home {
   message: String
 }
 
+interface MutationResponse {
+  ok: Boolean!
+  error: String
+}
+
+
+type CreateOneTortleMutationResponse implements MutationResponse {
+  ok: Boolean!
+  error: String
+  tortue: Tortue
+}
+
+
 type Query {
   homepage: Home
   getTortues: [Tortue]
+}
+
+type Mutation {
+  createOneTortle(name: String, age: String, taille: String, terrestre: Boolean, species: String): CreateOneTortleMutationResponse
 }
 
 type Tortue {

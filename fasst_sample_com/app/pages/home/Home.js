@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Divider } from 'antd';
-import { QHome } from '../../_graphql/queries';
 import { QTortles } from '../../_graphql/queries';
+import CreateTortleForm from './CreateTortleForm'
 
 const DivFullPage = styled.div`
   height: 100vh;
@@ -27,20 +26,10 @@ const DivFullPage = styled.div`
    }
 `;
 
-/*const Home = () => (
-  <QHome>
-    {({ message }) => (
-      <DivFullPage>
-        <div>
-          <img src="/image/logo-fasst.png" alt="FASST" width="300px" />
-          <Divider />
-          <h3>{message}</h3>
-        </div>
-      </DivFullPage>
-    )}
-  </QHome>
-);*/
+
+
 const Home = () => (
+  
   <QTortles>
     {(tortues) => {
       const listTortles = tortues.map((tortue) =>
@@ -55,6 +44,7 @@ const Home = () => (
       return (
         <DivFullPage>
           <h1>TOUS LES TORTUES</h1>
+          <CreateTortleForm/>
           <table className="center">
             <thead>
               <tr>
