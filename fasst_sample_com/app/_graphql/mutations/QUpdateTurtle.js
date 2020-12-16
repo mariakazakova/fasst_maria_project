@@ -3,17 +3,20 @@ import { commitMutation, graphql } from 'react-relay';
 import environment from '..';
 
 const mutation = graphql`
-  mutation QAddTortleMutation($name: String!,
+  mutation QUpdateTurtleMutation(
+                        $name: String,
                         $age: String,
                         $taille: String,
                         $terrestre: Boolean,
-                        $species: String){
-    createOneTortle(
+                        $species: String,
+                        $id: ID){
+    updateOneTortle(
       name: $name,
       age: $age,
       taille: $taille,
       terrestre: $terrestre,
-      species: $species
+      species: $species,
+      id: $id
     )
     {
       tortue {
@@ -30,6 +33,7 @@ const mutation = graphql`
 
 export default (args, done) => {
   const variables = {
+    id: args.id,
     name: args.name,
     age: args.age,
     taille: args.taille,
@@ -41,9 +45,9 @@ export default (args, done) => {
     {
       mutation, // * Voir le GQL au dessus
       variables, // * Les variables definie,
-      updater: (store, { createOneTortle }) => {},
-      onCompleted: ({ createOneTortle }) => {
-        done(false, createOneTortle);
+      updater: (store, { updateOneTortle }) => {},
+      onCompleted: ({ updateOneTortle }) => {
+        done(false, updateOneTortle);
       },
       onError: (err) => {
         done(true, err);

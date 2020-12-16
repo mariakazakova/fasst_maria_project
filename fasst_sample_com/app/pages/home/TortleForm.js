@@ -5,11 +5,16 @@ import { useForm, Controller } from 'react-hook-form';
 export const TortleForm = props => {
   const { control, handleSubmit } = useForm();
 
-  const onSubmit = data => { 
-    props.createTortue(data);
+  const onSubmit = data => {
+    if (props.tortue){
+      data.id = props.tortue._id;
+      props.updateTortue(data);
+    }
+    else {
+      props.createTortue(data);
+    }
     props.onCancel();
   };
-
 
   const TextInput = ({ label, placeHolder = 'text', onChange, value }) => (
     <Form.Item
@@ -36,9 +41,9 @@ export const TortleForm = props => {
       <Controller
         name="name"
         control={control}
-        defaultValue=""
+        defaultValue={props.tortue ? props.tortue.name : ''}
         rules={{
-          required: true
+          required: !props.tortue
         }}
         render={({ onChange, value }) => <TextInput label={'Nom'} onChange={onChange} value={value}/>}
       />
@@ -46,9 +51,9 @@ export const TortleForm = props => {
       <Controller
         name="age"
         control={control}
-        defaultValue=""
+        defaultValue={props.tortue ? props.tortue.age : ''}
         rules={{
-          required: true
+          required: !props.tortue
         }}
         render={({ onChange, value }) => <TextInput label={'Age'} onChange={onChange} value={value}/>}
       />
@@ -56,9 +61,9 @@ export const TortleForm = props => {
       <Controller
         name="taille"
         control={control}
-        defaultValue=""
+        defaultValue={props.tortue ? props.tortue.taille : ''}
         rules={{
-          required: true
+          required: !props.tortue
         }}
         render={({ onChange, value }) => <TextInput label={'Taille'} onChange={onChange} value={value}/>}
       />
@@ -66,9 +71,9 @@ export const TortleForm = props => {
       <Controller
         name="species"
         control={control}
-        defaultValue=""
+        defaultValue={props.tortue ? props.tortue.species : ''}
         rules={{
-          required: true
+          required: !props.tortue
         }}
         render={({ onChange, value }) => <TextInput label={'Espèce'} onChange={onChange} value={value}/>}
       />
@@ -76,10 +81,7 @@ export const TortleForm = props => {
       <Controller
         name="terrestre"
         control={control}
-        defaultValue="false"
-        rules={{
-          required: true
-        }}
+        defaultValue={props.tortue ? props.tortue.terrestre : 'false'}
         render={({ onChange, value }) => <SelectInput label={'Terrestre/Aquatique'} onChange={onChange} value={value}/>}
       />
       <br/>
