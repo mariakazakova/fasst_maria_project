@@ -26,15 +26,13 @@ const DivFullPage = styled.div`
    }
 `;
 
-
-
 const Home = () => {
 
-  const { createTortue, updateTortue, key } = useTortues();
+  const { createTortue, updateTortue, deleteTurtle, key } = useTortues();
 
   return (
     <DivFullPage>
-      <ListeTortues createTortue={createTortue} updateTortue={updateTortue} key={key} />
+      <ListeTortues createTortue={createTortue} updateTortue={updateTortue} key={key} deleteTurtle={deleteTurtle} />
     </DivFullPage>
   );
 };

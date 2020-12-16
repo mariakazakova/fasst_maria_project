@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { QTortles } from '../../_graphql/queries';
 import CreateTortleForm from './CreateTortleForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 export const ListeTortues = props => {
 
@@ -32,7 +34,10 @@ export const ListeTortues = props => {
                   <td>{tortue.taille}</td>
                   <td>{tortue.terrestre ? 'Terrestre' : 'Aquatique'}</td>
                   <td>{tortue.species}</td>
-                  <td><CreateTortleForm createTortue={props.createTortue} updateTortue={props.updateTortue} tortue={tortue}/></td>
+                  <td>
+                    <CreateTortleForm createTortue={props.createTortue} updateTortue={props.updateTortue} tortue={tortue}/> &nbsp; &nbsp;
+                    <FontAwesomeIcon icon={faTrashAlt} style={{ cursor: 'pointer' }} className="float-right" onClick={() => props.deleteTurtle(tortue._id)}/>
+                  </td>
                 </tr>
               )
             }
