@@ -37,11 +37,11 @@ const CreateTortleForm = props => {
   };
 
   const ElementToShow = ({ onClick }) => (
-    props.tortue?
-    <FontAwesomeIcon icon={faEdit} style={{cursor: 'pointer'}} className="float-right" onClick={onClick}/>:
-    <Button type="primary" onClick={onClick}>
-      Créer une tortue
-    </Button>
+    props.tortue ?
+      <FontAwesomeIcon icon={faEdit} style={{ cursor: 'pointer' }} className="float-right" onClick={onClick}/> :
+      <Button type="primary" onClick={onClick}>
+        Créer une tortue
+      </Button>
   );
 
 
@@ -49,7 +49,7 @@ const CreateTortleForm = props => {
   return (
     <>
       <ElementToShow onClick={showModal}/>
-      <Modal title={props.tortue?"Mise à jour de tortue":"Creation de tortue"} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title={props.tortue ? 'Mise à jour de tortue' : 'Creation de tortue'} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <TortleForm createTortue={props.createTortue} updateTortue={props.updateTortue} tortue={props.tortue} onCancel={handleCancel}/>
       </Modal>
     </>

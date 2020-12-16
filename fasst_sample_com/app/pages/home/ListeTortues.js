@@ -23,7 +23,7 @@ export const ListeTortues = props => {
           </tr>
         </thead>
         <tbody>
-          <QTortles args={{key}}>
+          <QTortles args={{ key }}>
             {(tortues) =>
               tortues.map((tortue) =>
                 <tr key={tortue._id}>

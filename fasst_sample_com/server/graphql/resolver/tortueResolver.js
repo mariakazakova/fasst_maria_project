@@ -41,10 +41,7 @@ const TortueResolver = () => {
 
   const updateOneTortle = async (tortue, id) => {
     try {
-      console.log("in update tortue", tortue);
-      console.log("in update id", id);
       const response = await tortueService('updateTortue', { ...tortue, id });
-      console.log("response in update ", response);
       return OK({ tortue: response });
     } catch (err) {
       return {};
