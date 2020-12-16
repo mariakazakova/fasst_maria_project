@@ -28,7 +28,7 @@ const CreateTortleForm = props => {
     setIsModalVisible(true);
   };
 
-  const handleCancel = () => {
+  const handleCloseModal = () => {
     setIsModalVisible(false);
   };
 
@@ -45,8 +45,8 @@ const CreateTortleForm = props => {
   return (
     <>
       <ElementToShow onClick={showModal}/>
-      <Modal title={props.tortue ? 'Mise à jour de tortue' : 'Creation de tortue'} visible={isModalVisible} onOk={handleCancel} onCancel={handleCancel}>
-        <TortleForm createTortue={props.createTortue} updateTortue={props.updateTortue} tortue={props.tortue} onCancel={handleCancel}/>
+      <Modal title={props.tortue ? 'Mise à jour de tortue' : 'Creation de tortue'} visible={isModalVisible} onOk={handleCloseModal} onCancel={handleCloseModal}>
+        <TortleForm createTortue={props.createTortue} updateTortue={props.updateTortue} tortue={props.tortue} onCancel={handleCloseModal}/>
       </Modal>
     </>
   );
