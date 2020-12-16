@@ -2,16 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { QTortles } from '../../_graphql/queries';
 import CreateTortleForm from './CreateTortleForm';
-import { useTortues } from './useTortues';
 
 export const ListeTortues = props => {
-    
-  const { createTortue, key } = useTortues();
+
+  const key = props.key;
 
   return (
     <div>
       <h1>TOUTES LES TORTUES</h1>
-      <CreateTortleForm createTortue={createTortue} />
+      <CreateTortleForm createTortue={props.createTortue} />
       <table className="center">
         <thead>
           <tr>
@@ -20,18 +19,20 @@ export const ListeTortues = props => {
             <th>Taille</th>
             <th>Terrestre/Aquatique</th>
             <th>Espèce</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <QTortles args={{ key }}>
+          <QTortles args={{key}}>
             {(tortues) =>
-              tortues.map(({ _id, name, age, taille, terrestre, species }) =>
-                <tr key={_id}>
-                  <td>{name}</td>
-                  <td>{age}</td>
-                  <td>{taille}</td>
-                  <td>{terrestre ? 'Terrestre' : 'Aquatique'}</td>
-                  <td>{species}</td>
+              tortues.map((tortue) =>
+                <tr key={tortue._id}>
+                  <td>{tortue.name}</td>
+                  <td>{tortue.age}</td>
+                  <td>{tortue.taille}</td>
+                  <td>{tortue.terrestre ? 'Terrestre' : 'Aquatique'}</td>
+                  <td>{tortue.species}</td>
+                  <td><CreateTortleForm createTortue={props.createTortue} updateTortue={props.updateTortue} tortue={tortue}/></td>
                 </tr>
               )
             }

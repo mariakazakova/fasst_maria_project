@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ListeTortues } from './ListeTortues';
+import { useTortues } from './useTortues';
 
 const DivFullPage = styled.div`
   height: 100vh;
@@ -29,9 +30,11 @@ const DivFullPage = styled.div`
 
 const Home = () => {
 
+  const { createTortue, updateTortue, key } = useTortues();
+
   return (
     <DivFullPage>
-      <ListeTortues/>
+      <ListeTortues createTortue={createTortue} updateTortue={updateTortue} key={key} />
     </DivFullPage>
   );
 };

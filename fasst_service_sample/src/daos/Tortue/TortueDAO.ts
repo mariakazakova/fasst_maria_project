@@ -25,7 +25,8 @@ class TortueDao implements ITortueDao {
     }
 
     public async update(newTortue: ITortue, id: string): Promise<ITortue | null> {
-        return tortue.findByIdAndUpdate({ _id: id }, newTortue);
+        await tortue.findByIdAndUpdate({ _id: id }, newTortue);
+        return tortue.findOne({ _id: id });
     }
 
     public async delete(id: string): Promise<string> {

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Modal, Button } from 'antd';
 import { TortleForm } from './TortleForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const layout = {
   labelCol: {
@@ -22,7 +24,6 @@ const CreateTortleForm = props => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -35,13 +36,21 @@ const CreateTortleForm = props => {
     setIsModalVisible(false);
   };
 
+  const ElementToShow = ({ onClick }) => (
+    props.tortue?
+    <FontAwesomeIcon icon={faEdit} style={{cursor: 'pointer'}} className="float-right" onClick={onClick}/>:
+    <Button type="primary" onClick={onClick}>
+      Créer une tortue
+    </Button>
+  );
+
+
+
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Créer une tortue
-      </Button>
-      <Modal title="Creation de tortue" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <TortleForm createTortue={props.createTortue} onCancel={handleCancel}/>
+      <ElementToShow onClick={showModal}/>
+      <Modal title={props.tortue?"Mise à jour de tortue":"Creation de tortue"} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <TortleForm createTortue={props.createTortue} updateTortue={props.updateTortue} tortue={props.tortue} onCancel={handleCancel}/>
       </Modal>
     </>
   );

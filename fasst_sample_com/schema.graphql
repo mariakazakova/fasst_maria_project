@@ -18,6 +18,11 @@ type CreateOneTortleMutationResponse implements MutationResponse {
   tortue: Tortue
 }
 
+type UpdateTortleMutationResponse implements MutationResponse {
+      ok: Boolean!
+      error: String
+      tortue: Tortue
+}
 
 type Query {
   homepage: Home
@@ -26,6 +31,7 @@ type Query {
 
 type Mutation {
   createOneTortle(name: String, age: String, taille: String, terrestre: Boolean, species: String): CreateOneTortleMutationResponse
+  updateOneTortle(name: String, age: String, taille: String, terrestre: Boolean, species: String, id: ID): UpdateTortleMutationResponse
 }
 
 type Tortue {
