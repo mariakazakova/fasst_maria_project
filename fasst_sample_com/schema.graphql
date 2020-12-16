@@ -9,8 +9,13 @@ type Home {
 interface MutationResponse {
   ok: Boolean!
   error: String
+  
 }
 
+type DeleteTortleMutationResponse implements MutationResponse {
+      ok: Boolean!
+      error: String
+}
 
 type CreateOneTortleMutationResponse implements MutationResponse {
   ok: Boolean!
@@ -24,6 +29,8 @@ type UpdateTortleMutationResponse implements MutationResponse {
       tortue: Tortue
 }
 
+
+
 type Query {
   homepage: Home
   getTortues: [Tortue]
@@ -32,6 +39,7 @@ type Query {
 type Mutation {
   createOneTortle(name: String, age: String, taille: String, terrestre: Boolean, species: String): CreateOneTortleMutationResponse
   updateOneTortle(name: String, age: String, taille: String, terrestre: Boolean, species: String, id: ID): UpdateTortleMutationResponse
+  deleteOneTortle(id: ID): DeleteTortleMutationResponse
 }
 
 type Tortue {

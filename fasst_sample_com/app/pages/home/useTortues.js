@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import QTortlesMutation from '../../_graphql/mutations/QAddTortle';
 import QUpdateTurtleMutation from '../../_graphql/mutations/QUpdateTurtle';
+import QDeleteTurtleMutation from '../../_graphql/mutations/QDeleteTurtle';
 import { inc } from 'ramda';
 
 export const useTortues = () => {
@@ -36,5 +37,15 @@ export const useTortues = () => {
     });
   };
 
-  return { createTortue, updateTortue, key };
+  const deleteTurtle = async (id) => {
+    QDeleteTurtleMutation({
+      id: id
+    }, (hasError, data) => {
+      if (!hasError) {
+        setKey(inc(key));
+      }
+    });
+  };
+
+  return { createTortue, updateTortue, deleteTurtle, key };
 };
