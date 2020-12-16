@@ -36,7 +36,7 @@ export const ListeTortues = props => {
                   <td>{tortue.species}</td>
                   <td>
                     <CreateTortleForm createTortue={props.createTortue} updateTortue={props.updateTortue} tortue={tortue}/> &nbsp; &nbsp;
-                    <FontAwesomeIcon icon={faTrashAlt} style={{ cursor: 'pointer' }} className="float-right" onClick={()=>props.deleteTurtle(tortue._id)}/>
+                    <FontAwesomeIcon icon={faTrashAlt} style={{ cursor: 'pointer' }} className="float-right" onClick={() => props.deleteTurtle(tortue._id)}/>
                   </td>
                 </tr>
               )
