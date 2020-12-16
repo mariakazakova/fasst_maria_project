@@ -56,7 +56,7 @@ const GQLEnvironment = async () => {
     return R.prop('url', await response.json());
   };
 
-  const subscriptionClient = new SubscriptionClient(await graphqlWsUrl(), {
+  /*const subscriptionClient = new SubscriptionClient(await graphqlWsUrl(), {
     reconnect: true,
   });
 
@@ -67,10 +67,10 @@ const GQLEnvironment = async () => {
     execute(subscriptionLink, {
       query: operation.text,
       variables,
-    });
+    });*/
   
   return new Environment({
-    network: Network.create(fetchQuery, networkSubscriptions),
+    network: Network.create(fetchQuery), //networkSubscriptions),
     store: new Store(new RecordSource()),
   });
 };
